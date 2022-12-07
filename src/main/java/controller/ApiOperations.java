@@ -32,6 +32,20 @@ public class ApiOperations extends HttpServlet {
 				}
 				""", PersonDAO.addPerson(p));
 	}
+	// other alternative post implementation
+	protected void doMyOderPost(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		res.setContentType("application/json");
+		res.setCharacterEncoding("UTF-8");
+		res.getWriter().printf(
+			"%s",
+			req.getReader()
+				.lines()
+				.collect(
+					Collectors.joining()
+				).toLowerCase()
+		);
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
